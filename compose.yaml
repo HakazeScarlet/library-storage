@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  postgresql:
+    image: postgres
+    container_name: library-storage
+    ports:
+      - "5436:5432"
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+      - ./data/postgres:/var/lib/postgresql/library-storage 777
+    environment:
+      - 'POSTGRES_DB=library_storage'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_USER=admin'
